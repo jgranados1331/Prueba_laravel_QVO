@@ -6,7 +6,7 @@ siga las instrucciones para realizar el testeo de la app:
     2.Instalar Composer
     3.Instalar Laravel mediante composer con el siguiente script "composer create-project laravel/laravel example-app"
     4.clone el codigo de git hub realizando apertura de una consola git en la carpeta donde desee clonarlo con el comando git clone url
-    5.valide en el proyecto creado de ejemplo con el comando php artisen serve, que realmente este funcionando laravel
+    5.valide en el proyecto creado de ejemplo con el comando php artisan serve, que realmente este funcionando laravel
     6.una vez validado, copie los archivos internos del repositorio clonado y peguelos en el nuevo proyecto
     7.inicialice XAMPP y realice la activacion de Apache y Mysql
     8.Damos clic en admin de mysql y alli nos arrojara nuestro servidor local de la base de datos
