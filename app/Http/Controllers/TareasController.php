@@ -12,14 +12,16 @@ use App\Mail\Tareacompletada;
 
 class TareasController extends Controller
 {
+    /*Creacion de tareas */
     public function store(Request $request,){
+        /*Validacion de parametros*/
         if(Auth::check()){
             $request -> validate([
                 'title' => 'required|min:3',
                 'Description' => 'required|min:10',
                 'CaductDate' => 'required'
             ]);
-
+            /*Valorizacion de variables para la base de datos */
             $tareas = new tareas;
             $tareas -> user_id = $request -> user_id;
             $tareas -> title = $request -> title;
@@ -27,8 +29,9 @@ class TareasController extends Controller
             $tareas -> CaductDate = $request -> CaductDate;
             $tareas -> save();
 
+            /*Obtencion del email del usuario para realizar el envio del email correspondiente*/
             $email = auth()->user()->email;
-
+            /*Envio de Email */
             Mail::to($email)->send(new Tareacreada);
             return redirect()-> route('tareas')->with('success', 'Tarea guardada correctamente');
         }
@@ -38,6 +41,7 @@ class TareasController extends Controller
     }
 
     public function index(){
+        /*Busqueda de tareas segun usuario, ordernadas de forma ascendente con fecha de vencimiento y paginado macimo a 7 elementos */
         if(Auth::check()){
             $usuario = Auth::user();
             $tareas = tareas::where('user_id', $usuario->id)->orderBy('CaductDate', 'asc')->paginate(7);
@@ -48,11 +52,13 @@ class TareasController extends Controller
     }
 
     public function show($id){
+        /*Mostrar una tarea especifica segun el id */
         $tarea = tareas::find($id);
         return view('show', ['tarea' => $tarea]);
     }
 
     public function update(Request $request, $id){
+        /*Actualizacion de tarea segun id */
         $tarea = tareas::find($id);
         $tarea -> title = $request -> title;
         $tarea -> Description = $request -> Description;
@@ -61,6 +67,7 @@ class TareasController extends Controller
     }
 
     public function delete($id){
+        /*Eliminar tarea segun id */
         $tarea = tareas::find($id);
         $tarea->delete();
 
@@ -69,6 +76,7 @@ class TareasController extends Controller
 
     public function cambiarEstado($id)
 {
+    /*Cambio de estado completado de la tarea*/
     $tarea = tareas::find($id);
 
     $tarea->Complete = !$tarea->Complete;

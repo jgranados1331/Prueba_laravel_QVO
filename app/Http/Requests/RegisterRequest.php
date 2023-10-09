@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
+/*Validacion de datos de registro*/
 class RegisterRequest extends FormRequest
 {
     /**

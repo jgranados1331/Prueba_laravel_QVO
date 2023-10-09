@@ -12,6 +12,7 @@ use App\Mail\Registro;
 class RegisterController extends Controller
 {
     public function show(){
+        /*Validacion de autenticacion para controlar las vistas */
         if(Auth::check()){
             return redirect('/mis-tareas');
         }
@@ -19,6 +20,7 @@ class RegisterController extends Controller
     }
 
     public function register(RegisterRequest $request){
+        /*Creacion de usuarios en la base de datos y su validacion */
         $user = User::create($request->validated());
         $email = $request->email;
         Mail::to($email)->send(new Registro);

@@ -11,7 +11,6 @@
     <div class="container_all">
     <div class="conteiner">
     <div class="cont_form">
-        <div class="icon"><img src="{% static 'images/iconoproyecto.png' %}" alt=""></div>
         <div class="name_proyect"><p>Inicio de sesion</p></div>
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <form action="/login" method="POST" class="form">

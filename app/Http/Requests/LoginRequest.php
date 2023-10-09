@@ -22,6 +22,8 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
+
+     /*Validacion de datos de inicio de sesion*/
     public function rules()
     {
         return [
